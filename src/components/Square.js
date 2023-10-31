@@ -1,9 +1,9 @@
 import React from "react"
 
-const Square = ({value, index, handleSqaureClick}) => {
+const Square = ({value, index, handleSquareClick}) => {
   // const { value } = props
   const handleClick = () => {
-    handleSqaureClick(index)
+    handleSquareClick(index)
   }
   return (
     <>
