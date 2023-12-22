@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Square from "./components/Square";
 import "./App.css";
-import Destroyer from './Destroyer.jpg';
-import Loot from './Loot.jpg';
-import Guardian from './Guardian.jpg';
-import Map from './Map.jpg';
+import Destroyer from "./Destroyer.jpg";
+import Loot from "./Loot.jpg";
+import Guardian from "./Guardian.jpg";
+import Map from "./Map.jpg";
+import { ImGithub } from "react-icons/im";
+import { FaLinkedin } from "react-icons/fa";
 
 const App = () => {
   const [board, setBoard] = useState(Array(9).fill("?"));
@@ -27,10 +29,20 @@ const App = () => {
     if (clickedSquareIndex === treasureLocation) {
       updatedBoard[clickedSquareIndex] = <img src={Loot} alt="Loot" />;
       setGameOver(true);
-      setTimeout(() => showRestartAlert("Good Job! Vault Hunter, you found the Treasure"), 400);
+      setTimeout(
+        () =>
+          showRestartAlert("Good Job! Vault Hunter, you found the Treasure"),
+        400
+      );
     } else if (clickedSquareIndex === bombLocation) {
       updatedBoard[clickedSquareIndex] = <img src={Destroyer} alt="💥" />;
-      setTimeout(() => showRestartAlert("The Destroyer OBLITERATED you! Respawn and try again"), 400);
+      setTimeout(
+        () =>
+          showRestartAlert(
+            "The Destroyer OBLITERATED you! Respawn and try again"
+          ),
+        400
+      );
       setGameOver(true);
     } else {
       updatedBoard[clickedSquareIndex] = <img src={Guardian} alt="👽" />;
@@ -51,7 +63,13 @@ const App = () => {
   useEffect(() => {
     if (guesses === 0) {
       setGameOver(true);
-      setTimeout(() => showRestartAlert("YOU'RE EXHAUSTED, Vault Hunter! The Destroyer has atomized you!"), 400);
+      setTimeout(
+        () =>
+          showRestartAlert(
+            "YOU'RE EXHAUSTED, Vault Hunter! The Destroyer has atomized you!"
+          ),
+        400
+      );
     }
   }, [guesses]);
 
@@ -76,65 +94,63 @@ const App = () => {
             />
           ))}
         </div>
-        <div className="respawn-section">
+        <div                      > 
+        
           <div className="button-container">
             <button className="playButton" onClick={handlePlayAgain}>
               Respawn?
             </button>
-            <p className="remGuesses">Remaining Attacks: {guesses}</p>
           </div>
+            <p className="remGuesses">Remaining Attacks: {guesses}</p>
         </div>
       </div>
       <div className="instructions">
         <div className="boss-fight">
           <h1>Pandoras Vault</h1>
           <div className="game-rules">
-          Vault Hunter! Armed with your trusty map, you must navigate the treacherous terrain of Pandora to locate the elusive Vault. However, beware of the mighty Guardians who stand between you and your goal. But heed this warning: the Destroyer, a colossal force of chaos, looms on the horizon. Choosing the wrong location may lead to a direct confrontation with this formidable foe, and your quest could come to a premature end.
-
-            <br /><br />
-
-            <strong>Rules:</strong>
+            Vault Hunter! Armed with your trusty map, you must navigate the
+            treacherous terrain of Pandora to locate the elusive Vault. However,
+            beware of the mighty Guardians who stand between you and your goal.
+            But heed this warning: the Destroyer, a colossal force of chaos,
+            looms on the horizon. Choosing the wrong location may lead to a
+            direct confrontation with this formidable foe, and your quest could
+            come to a premature end.
+            <br />
+            <br />
+            {/* <strong>Rules:</strong>
             <ul>
               <li>You have 5 turns to search for The Vault.</li>
               <li>Beware of the Guardians protecting The Vault.</li>
               <li>Find the Vault before the Destroyer arrives!</li>
-            </ul>
-
-            {/* Good luck, and may the loot be ever in your favor! */}
+            </ul> */}
+           
           </div>
         </div>
       </div>
       <div className="made-by">
-        Made by Chandler Gipson 2023
-        <div className="social-icons">
-          <a href="https://www.linkedin.com/in/chandlergipson/" target="_blank" rel="noopener noreferrer">
-            <img src="linkedin-icon.png" alt="LinkedIn" />
-          </a>
-          <a href="https://github.com/ChandlerGipson" target="_blank" rel="noopener noreferrer">
-            <img src="github-icon.png" alt="GitHub" />
-          </a>
-        </div>
+      Made by Chandler Gipson 2023
+      <div className="social-icons">
+        <a
+          href="https://www.linkedin.com/in/chandlergipson/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin />
+        </a>
+        <a
+          href="https://github.com/ChandlerGipson"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ImGithub />
+        </a>
       </div>
+    </div>
     </div>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

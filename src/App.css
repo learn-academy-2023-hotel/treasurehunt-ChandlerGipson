@@ -1,4 +1,3 @@
-/* Background styling */
 html {
   background: url(Vaultportal.jpg);
   background-size: cover;
@@ -7,65 +6,130 @@ html {
   height: 100%;
   margin: auto;
   border-radius: 4px;
+  filter: brightness(90%);
+  display: grid;
+  align-items: center;
+}
+
+html, body {
+  height: 100%;
+  margin: -100;
+  padding: 0;
 }
 
 .game-container {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
 
+/* Default styles for larger screens */
 .game {
-  background: url(Map.jpg); 
-  background-size: cover; 
-  max-width: 580px; 
-  width: 100%; 
+  background-image:url(Map.jpg);
+  background-size: cover;
+  width: 598px;
+  height: 640px;
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 0 2px 2px black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-top: 30px;
+}
+
+/* Styles for smaller screens */
+@media (max-width: 480px) {
+  .game {
+    max-width: 100%;
+  }
 }
 
 h1 {
   text-align: center;
-  font-family: 'Pandoras Vault';
+  font-family: "Pandoras Vault";
   color: gold;
   font-size: 3rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 19.9); 
-}
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 19.9);
+  font-weight: bolder;
+  /* margin-left: 80px; */
 
-.game-rules, .remGuesses {
+
+} 
+
+.game-rules,
+.remGuesses {
   text-align: center;
   font-weight: bold;
-  font-size: 1.5rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.4rem;
+  font-family: "Courier New", Courier, monospace;
   color: gold;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 19.9);
+  /* margin-top: 20px; */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 40.9);
+
+}
+
+.remGuesses::after {
+  content: " ";
 }
 
 .square {
-  height: 180px; 
-  width: 180px; 
-  border: 1px dashed black;
-  font-size: 10rem;
+  height: 122px;
+  width: 122px;
+  border: 2px dashed black;
+  font-size: 6.5rem;
+  font-weight: bolder;
   text-align: center;
-  transition: opacity 0.3s ease;
-  margin: 5px; 
+  opacity: 1;
+  transition: opacity 0.9s ease;
+  margin: 12px;
+  cursor: pointer;
+  color: #db0c0c;
 }
 
-.square img {
+ .square img {
   object-fit: cover;
   height: 100%;
   width: 100%;
   font-size: 10rem;
   text-align: center;
+} 
+
+.square, .square-off { /*square has white hover effect, while square-off doesn't because no pseudo-class :hover */
+  /* background-image: url(Vaultlogo.jpg); */
+  background-size: cover;
+  background-color: rgba(11, 11, 11, 0.1);
+  box-shadow: 0 0 2px 2px black;
+  height: 122px;
+  width: 122px;
+  border: 2px dotted black;
+  border-radius: 4px;
+  font-size: 6.5rem;
+  font-weight: bolder;
+  color:  purple;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  opacity: 1;
+  margin: 12px;
+  cursor: pointer;
+  transition: color 0.3s; /* transition timer for hover effect */
 }
 
+.square:hover{  
+  color: gold;
+ } /* Changes the "?" color when hovered over */
+
 .board {
+  /* justify-content: center; */
   display: flex;
   flex-wrap: wrap;
-  max-width: 600px; 
-  width: 100%; 
-  margin: 0 auto;
+  max-width: 600px;
+  width: 461px;
+  height: 416px;
+  margin: 25px auto;
   color: purple;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
 }
 
 .game-rules {
@@ -74,25 +138,66 @@ h1 {
   max-width: 400px;
 }
 
-.remGuesses {
+.remGuesses { /*remain attacks title */
   text-align: center;
-  color: gold; 
+  color: gold;
   font-size: 2rem;
-  font-family: 'Courier New', Courier, monospace;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 19.9); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 19.9);
+  width: 200px;
+  height: 90px;
+  font-weight: bolder;
+  margin: 0 auto;
+  margin-left: 10px;
+  top: 50%;
+  background-color: rgba(11, 11, 11, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px black;
+  line-height: 1.3;
+  padding-top: 5px;
+  cursor: auto;
+  
 }
 
-.playButton {
+.remGuesses-button:hover {
+  background-color: rgb(255, 255, 255, 0.6); 
+} 
+
+.button-container {
   display: flex;
-  font-size: 1rem;
-  text-align: center;
-  margin: 20px auto 10px;
-  color: gold; 
-  padding: 10px; 
-  border-radius: 8px; 
-  background-color: #201f1f;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  justify-content: center;
+  align-items: center; /* Add this line to center items vertically */
+  margin-top: 10px; /* Adjust the margin as needed */
+  margin-bottom: 10px;
+  width: 100%;
 }
+
+
+.playButton, .respawn {
+  width: 220px;
+  height: 38px;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: gold;
+  margin: 0 auto;
+  margin-right: +10px;
+  /* margin-top: 0px;  */
+  cursor: pointer;
+  background-color: rgba(11, 11, 11, 0.3);
+  box-shadow: 0 0 2px 2px purple;
+  border-radius: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 19.9);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.restart-button:hover {
+  background-color: rgb(255, 255, 255, 0.6); 
+}
+
+ .respawn-number {
+  padding-left: 85px;
+  font-weight: bolder;
+  color: gold;
+} 
 
 .guess-box {
   display: flex;
@@ -108,24 +213,38 @@ h1 {
 .made-by {
   position: absolute;
   bottom: 0;
-  left: 50%; 
-  transform: translateX(-50%); 
+  left: 50%;
+  transform: translateX(-50%);
   padding: 20px;
-  color: rgb(250, 248, 250);
+  color: purple;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 40.9); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 190.9);
+  font-size: 1.2rem;
+  width: 100%;
+ 
 }
 
 .social-icons {
   display: flex;
-  justify-content: center; 
-  margin-top: 10px; 
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .social-icons img {
-  width: 30px; 
-  height: 30px; 
-  margin-right: 10px; 
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+ }
+
+ p {
+  font-size: 1.67rem;
+  text-shadow: 1px 1px rgb(176, 162, 141);
+}
+
+/* Flexbox Layout : sets board and directions side by side */
+.float-parent-element, .float-child-element {
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -138,6 +257,98 @@ h1 {
 
 
 
+@media only screen and (max-width: 800px){
+
+  body {
+    background-size: 250vh;
+  }
+
+  .float-parent-element, .float-child-element {
+    display: grid;
+  }
+
+  .custom-alert-container {
+    height: 160%;
+    width: 100%;
+  } 
+}  
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .custom-alert-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  height: 100%;
+  z-index: 1000; 
+} */
+
+/* .custom-alert-contents {
+  background-image: url(Map.jpg);
+  background-size: contain;
+  width: 359px;
+  height: 384px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  margin: 16px;
+} */
+
+/* .custom-alert-text {
+  color: #553526;
+  text-shadow: none;
+} */
+
+/* .custom-alert-icon { Bomb, Treasure, and Skull appearance in alert */
+  /* font-size: 6rem;
+  margin: 0;
+} */
+
+/* .custom-alert-contents button { 
+
+  height: 55px;
+} */
+
+
+/* footer {
+  text-align: center;
+}
+
+@media only screen and (max-width: 800px){
+
+  body {
+    background-size: 250vh;
+  }
+
+  .float-parent-element, .float-child-element {
+    display: grid;
+  }
+
+  .custom-alert-container {
+    height: 160%;
+    width: 100%;
+  } 
+} */ 
